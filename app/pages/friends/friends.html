@@ -1,0 +1,9 @@
+<sa-navbar></sa-navbar>
+<div class="container" id="friends">
+  <div class="row">
+    <div class="col-md-3"> </div>
+    <div class="col-md-6">
+      <sa-user ng-repeat="friend in $ctrl.friends track by $index" user="friend" is-friend="true"></sa-user>
+    </div>
+  </div>
+</div>

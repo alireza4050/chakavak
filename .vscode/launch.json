@@ -1,0 +1,66 @@
+{
+  "version": "0.2.0",
+  "compounds": [
+    {
+      "name": "Fullstack",
+      "configurations": [
+        "Attach Nodemon",
+        "Launch Chrome"
+      ]
+    }
+  ],
+  "configurations": [
+    {
+      "name": "Launch Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:3000/",
+      "webRoot": "${workspaceRoot}",
+      "sourceMaps": true,
+      "userDataDir": ".vscode/tmp"
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Attach Nodemon",
+      "restart": true,
+      "port": 9229,
+      "internalConsoleOptions": "neverOpen",
+      "showAsyncStacks": true,
+      "skipFiles": [
+        "node_modules"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Nodemon",
+      "runtimeExecutable": "nodemon",
+      "runtimeArgs": [
+        "--watch ${workspaceFolder}/api"
+      ],
+      "restart": true,
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "program": "${workspaceFolder}/api/bin/www",
+      "showAsyncStacks": true,
+      "skipFiles": [
+        "node_modules"
+      ],
+      "env": {
+        "NODE_ENV": "development",
+        "DEBUG": "chakavak:*,express:application"
+      }
+    },
+    {
+      "name": "Debug Production",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:3000/",
+      "webRoot": "${workspaceRoot}/dist/public",
+      "sourceMaps": true,
+      "preLaunchTask": "prod",
+      "userDataDir": ".vscode/tmp"
+    },
+  ]
+}

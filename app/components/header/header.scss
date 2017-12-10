@@ -1,0 +1,29 @@
+$header-height: 15rem;
+$intro-width: 4 * $header-height / 7;
+#header {
+    height: $header-height;
+    #user-intro {
+        height: 2 * $intro-width;
+        width: $intro-width;
+        position: absolute;
+        top: $header-height - ($intro-width / 2);
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 50;
+        #profile-pic {
+            &,
+            &>img {
+                width: $intro-width;
+                height: $intro-width;
+                border-radius: 50%;
+            }
+        }
+        #intro-tags {
+            width: 2 * $intro-width;
+            font-size: 1.5em;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+}

@@ -1,0 +1,10 @@
+<sa-navbar></sa-navbar>
+<div class="container" id="feed">
+  <div class="row">
+    <div class="col-md-3"> </div>
+    <div class="col-md-6">
+        <div class="mt-3"></div>
+      <sa-post ng-repeat="post in $ctrl.posts track by $index" post="post"></sa-post>
+    </div>
+  </div>
+</div>

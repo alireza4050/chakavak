@@ -1,0 +1,36 @@
+$header-height: 9rem;
+#navbar {
+    // height: $header-height / 3;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 1050;
+    form>input {
+        // border-radius: $header-height / 9;
+        background-color: #fff;
+    }
+    ul {
+        font-size: 1.25rem;
+        align-items: center;
+    }
+    #userThumbnail img {
+        border-radius: 50%;
+        width: $header-height / 4;
+        height: $header-height / 4;
+        background-color: black;
+    }
+
+    .badge {
+        position: absolute;
+        left: 0em;
+        top: 1em;
+        font-size: 0.7em;
+    }
+    .dropdown-toggle {
+        position: relative;
+        &::after {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,14 @@
+#profileModal {
+    textarea {
+        resize: none;
+        width: 100%;
+        border: 1px solid grey;
+    }
+    input {
+        width: 100%;
+        border: 1px solid grey;
+    }
+    #user-tags {
+        position: relative;
+    }
+}

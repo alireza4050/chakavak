@@ -1,0 +1,16 @@
+#signin {
+    $border: 1px solid #868e96;
+    #signin-switch-buttons {
+        border: $border;
+        border-radius: .25rem;
+    }
+    .third-party-btns button {
+        width: 20rem;
+        i {
+            font-size: 2em;
+        }
+    }
+    form button {
+        width: 20rem;
+    }
+}

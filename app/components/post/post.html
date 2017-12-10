@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-header">
+    <img ng-src="post.author.thumbnail" alt=""> {{$ctrl.post.author}} {{post.createdAt}}
+    <i class="fa fa-map-marker mx-3" aria-hidden="true"></i> {{$ctrl.post.location}}</div>
+  <div class="card-body">
+    <p class="p-3">{{$ctrl.post.content}}</p>
+    <br>
+    <div class="mx-auto" style="max-height: 8em;"><img ng-src="{{$ctrl.post.img}}" alt=""></div>
+    <hr>
+  </div>
+  <div class="card-footer d-inline-flex justify-content-araund">
+    <i class="fa fa-comment-o" aria-hidden="true"></i> {{$ctrl.post.comments | farsiNum}} نظر
+    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{$ctrl.post.likes.length | farsiNum}} لایک
+</div>
+</div>

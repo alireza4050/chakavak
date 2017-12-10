@@ -1,0 +1,47 @@
+<div id="signin" class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3"> </div>
+      <div class="col-md-6">
+        <ul class="nav nav-pills">
+          <div id="signin-switch-buttons" class="d-flex justify-content-center mx-auto">
+            <li class="nav-item">
+              <a href class="nav-link" ng-class="{ active: isLogin, 'bg-secondary': isLogin, 'text-secondary': !isLogin }" ng-click="isLogin = true;">
+                <i class="fa fa-key"></i>&nbsp;ورود</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" ng-class="{ active: !isLogin, 'bg-secondary': !isLogin, 'text-secondary': isLogin }" ng-click="isLogin = false">ثبت نام</a>
+            </li>
+          </div>
+        </ul>
+        <br>
+        <div class="card p-5">
+          <div class="card-body">
+            <sa-login ng-show="isLogin"></sa-login>
+            <sa-register ng-show="!isLogin"></sa-register>
+            <hr>
+            <div class="third-party-btns">
+              <div class="row">
+                <button class="btn btn-dark my-1 mx-auto d-inline-flex align-items-center justify-content-between" ng-click="authenticate('google')">
+                  <span> ورود با گوگل </span>
+                  <i class="fa fa-google" aria-hidden="true"></i>
+                </button>
+              </div>
+              <div class="row">
+                <button class="btn btn-dark my-1 mx-auto d-inline-flex align-items-center justify-content-between" ng-click="authenticate('instagram')">
+                  <span> ورود با اینستاگرام </span>
+                  <i class="fa fa-instagram" aria-hidden="true"></i>
+                </button>
+              </div>
+              <div class="row">
+                <button class="btn btn-dark my-1 mx-auto d-inline-flex align-items-center justify-content-between" ng-click="authenticate('yahoo')">
+                  <span> ورود با یاهو </span>
+                  <i class="fa fa-yahoo" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

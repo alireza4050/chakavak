@@ -1,0 +1,31 @@
+#new-post {
+    position: relative;
+    // border-radius: 1em;
+    outline: none;
+    textarea {
+        resize: none;
+        width: 100%;
+        border: 0;
+        border-radius: 1em;
+        padding: 1em;
+        transition: all 1s;
+        height: 3.5em;
+        overflow: hidden;
+        &:not(:focus) {
+            box-shadow: unset;
+        }
+        &:focus {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            outline: none;
+        }
+    }
+    .card-body {
+        padding: 0;
+    } // .card-footer {
+    //     transition: all linear 1s;
+    //     &.ng-hide {
+    //         opacity: 0;
+    //     }
+    // }
+}

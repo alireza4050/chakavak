@@ -1,0 +1,15 @@
+<header id="header" class="mb-5 bg-secondary" style="background: url('/assets/img/profile_bg.png')">
+  <sa-navbar></sa-navbar>
+  <div id="user-intro" class="text-center">
+    <div id="profile-pic" class="bg-dark">
+      <img ng-src="{{user.avatar || '/assets/img/guy.jpeg'}}" alt="User Profile Picture">
+    </div>
+    <h2>{{user.name}}</h2>
+    <p>{{user.intro}}</p>
+    <div id="intro-tags" class="d-flex justify-content-center flex-row flex-wrap">
+      <div ng-repeat="tag in user.tags | limitTo: moreTags?user.tags.length:4" class="m-1 badge badge-pill badge-default bg-info">{{tag}}</div>
+      <div ng-show="user.tags.length > 4 && moreTags" ng-click="moreTags=false" class="badge badge-pill badge-default bg-secondary">کمتر</div>
+      <div ng-show="user.tags.length > 4 && !moreTags" ng-click="moreTags=true" class="badge badge-pill badge-default bg-secondary">بیشتر</div>
+    </div>
+  </div>
+</header>

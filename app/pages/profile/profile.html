@@ -1,0 +1,13 @@
+<sa-header user="$ctrl.user"></sa-header>
+<div class="container" id="home">
+  <div class="row">
+    <div class="col-md-3"> </div>
+    <div class="col-md-6">
+      <sa-new-post ng-show="isMyProfile"></sa-new-post>
+      <div infinite-scroll="getPosts()">
+        <div class="mt-3"></div>
+        <sa-post ng-repeat="post in posts track by $index" post="post"></sa-post>
+      </div>
+    </div>
+  </div>
+</div>

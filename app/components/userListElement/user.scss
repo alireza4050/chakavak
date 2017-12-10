@@ -1,0 +1,13 @@
+.user-el {
+    width: 100%;
+    .user-detail {
+      // min-width: 30%;
+        img {
+            // float: right;
+            min-width: 4em;
+            min-height: 4em;
+            background-color: #444;
+            border-radius: 50%;
+        }
+    }
+}

@@ -1,0 +1,13 @@
+<div class="user-el text-center card d-flex p-2 justify-content-between flex-row align-items-center">
+  <div class="user-detail d-flex-inline justify-content-around">
+    <img ng-src="$ctrl.user.thumbnail" alt="">
+    <span>{{$ctrl.user.name}}</span>
+  </div>
+  <div ng-if="$ctrl.user.isFriend">
+    <button class="btn btn-primary">مشاهده پروفایل</button>
+  </div>
+  <div ng-if="!$ctrl.user.isFriend">
+    <button ng-if="$ctrl.user.isConfirmed" class="btn btn-primary">درخواست دوستی</button>
+    <button ng-if="!$ctrl.user.isConfirmed" class="btn btn-secondary" disabled>در انتظار تایید</button>
+  </div>
+</div>

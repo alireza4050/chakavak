@@ -1,0 +1,16 @@
+<form name="uploadForm">
+  <button ngf-select ng-model="picFile" accept="image/*">
+    Select Picture</button>
+  <div>
+    <img ng-src="picFile  | ngfDataUrl" />
+  </div>
+  <button ng-click="upload(picFile, picFile.name)">Submit</button>
+
+  <div class="progress">
+    <div class="progress-bar" ng-show="progress >= 0" role="progressbar" style="width: {{progress}}%;" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+  <span ng-show="result">Upload Successful</span>
+  <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+</form>
+
+<!-- <img ng-repeat="img in previews track by $index" ng-src="{{img}}" alt=""> -->

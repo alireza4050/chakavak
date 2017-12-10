@@ -1,0 +1,25 @@
+<form id="new-post" class="card" name="form" method="POST" enctype="multipart/form-data" action="/api/post">
+  <div class="card-body">
+    <textarea id="new-post-textarea" name="content" rows="5" maxlength="200" placeholder="چه خبر؟" ng-model="post.content"></textarea>
+    <div ng-show="post.image" class="m-2">
+      <img ngf-src="post.image" style="max-width: 800px;" ng-src="{{croppedDataUrl}}" alt="">
+    </div>
+  </div>
+  <div ng-show='isExpanded' class="card-footer d-flex justify-content-between">
+    <div class="start">
+      <!-- ngf-resize="{width: 100, height: 100}" -->
+      <label for="imageInput" class="mx-2 mb-0 btn btn-light">
+        <input id="imageInput" class="d-none" type="file" ng-model="post.image" name="image" ngf-select ngf-accept="'image/*'" ngf-pattern="'image/*'"
+          ngf-max-height="400" ngf-max-size="0.5MB">
+        <i class="fa fa-picture-o" aria-hidden="true"></i>
+        <i class="fa fa-plus" aria-hidden="true"></i>
+      </label>
+      <div class="btn" id="location">
+        <i class="fa fa-map-marker mx-2" aria-hidden="true"></i> {{post.location}}</div>
+    </div>
+    <div class="end">
+      <span class="text-muted">{{ 200 - content.length | farsiNum }} کاراکتر</span>
+      <button type="submit" class="btn btn-primary"> انتشار </button>
+    </div>
+  </div>
+</form>

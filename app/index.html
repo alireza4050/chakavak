@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl" ng-app="app" ng-strict-di>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Rahnema Social</title>
+  <base href="/">
+</head>
+
+<body>
+  <div style="position: fixed; top: 11em; right: 1em; z-index: 10;">
+    <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Demos </button>
+    <div class="dropdown-menu" id="dropdown">
+      <a class="dropdown-item" ui-sref="demo signin"> Signin and Register </a>
+      <a class="dropdown-item" ui-sref="demo header"> Header </a>
+      <a class="dropdown-item" ui-sref="demo.passwordreset"> Password Reset </a>
+      <a class="dropdown-item" ui-sref="demo.post"> Post </a>
+      <a class="dropdown-item" ui-sref="demo.newpost"> New Post </a>
+      <a class="dropdown-item" ui-sref="demo.comment"> Comment </a>
+      <a class="dropdown-item" ui-sref="demo.userelement"> User List Element </a>
+      <a class="dropdown-item" ui-sref="demo.imageUpload"> Image Upload </a>
+      <a class="dropdown-item" ui-sref="demo friends"> Friend List </a>
+      <a class="dropdown-item" ui-sref="demo feed"> Feed </a>
+      <a class="dropdown-item" ui-sref="demo profile"> Profile </a>
+    </div>
+  </div>
+  <ui-view></ui-view>
+  <!-- built files will be auto injected -->
+</body>
+
+</html>

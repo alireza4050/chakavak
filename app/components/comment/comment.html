@@ -1,0 +1,18 @@
+<div class="card comment">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    <div class="thumbnail">
+      <a href="{{$ctrl.comment.user}}">
+        <img src="{{$ctrl.comment.thumbnail}}" style="width: 3em; height: 3em; border-radius: 50%;" alt="" srcset="">
+        <h5 class="d-inline-block" class="name"> {{$ctrl.comment.name}} </h5>
+      </a>
+    </div>
+    <div class="d-flex justifiy-content-around">
+      <div class="timestamp">{{$ctrl.comment.timestamp}}</div>
+      <div class="likes" ng-click="like()">
+        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{$ctrl.comment.likes | farsiNum }}</div>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="content">{{$ctrl.comment.content}}</p>
+  </div>
+</div>

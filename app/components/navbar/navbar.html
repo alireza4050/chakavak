@@ -1,0 +1,59 @@
+<nav id="navbar" class="navbar navbar-expand-md navbar-dark bg-primary">
+  <a class="navbar-brand mx-3" ui-sref="feed">
+    <img ng-src="/assets/img/logo.svg" style="height: 2.5em;" alt="">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse bg-primary px-3" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" id="userThumbnail">
+        <a class="nav-link" ui-sref="feed" data-toggle="modal" data-target="#profileModal">
+          <img ng-src="{{user.avatar || require('../../assets/img/guy.jpeg')}}" alt="">
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" data-placement="bottom" data-content="#notificationsPopup"
+          aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-bell-o fa-lg"></i>
+          <span class="badge badge-pill badge-light">3</span>
+          <span class="sr-only">اعلان‌ها</span>
+        </a>
+        <div class="dropdown-menu" id="notificationsPopup" aria-labelledby="notificationsPopup">
+          <a ng-repeat="notif in user.notifications | limitTo:6" class="dropdown-item" ng-href="">{{notif.message}}</a>
+          <div class="dropdown-divider"></div>
+          <a class="btn btn-light dropdown-item" href="#">مشاهده همه اعلان‌ها</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">
+          <i class="fa fa-cog fa-lg"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="modal" data-target="#profileModal">
+          <i class="fa fa-user-o fa-lg"></i>
+        </a>
+        <sa-profile-settings></sa-profile-settings>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">
+          <div ui-sref="logout" class="mx-3 btn btn-lg btn-primary">
+            خروج <i class="fa fa-sign-out" aria-hidden="true"></i>
+          </div>
+        </a>
+      </li>
+    </ul>
+    <div class="dropdown">
+      <form class="form-inline m-1" ng-submit="submit()">
+        <input ng-model="query" class="form-control  my-auto px-3" type="search" placeholder="جستجو" aria-label="جستجو">
+      </form>
+      <div ng-class="{show: query}" class="dropdown-menu" id="searchResults" aria-labelledby="searchResults">
+        <div ng-repeat="user in searchResults | filter:query | limitTo:5">
+          <a class="dropdown-item" href="#">{{user.name}}</a>
+          <div class="dropdown-divider"></div>
+        </div>
+      </div>
+    </div>
+</nav>
