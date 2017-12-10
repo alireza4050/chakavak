@@ -18,7 +18,7 @@ export default class Rest {
     .then(({ data: user }) => {
       const { username } = user;
       sessionStorage.setItem('username', username);
-      this.$state.go('profile', { username, user });
+      this.$state.go('profile', { user });
     })
     .catch(console.err);
 
@@ -34,12 +34,6 @@ export default class Rest {
     sessionStorage.removeItem('username');
     this.$state.go('signin');
   });
-
-  // getAvatar = (fileName) => {
-  //   if (!fileName) return Promise.resolve(default_avatar);
-  //   return this.$http.get(`/api/image/${fileName}`)
-  //     .then(({ data }) => data);
-  // }
 
   searchUsers = query => this.$http.get(`/api/users/searchUsername/${query}`).catch(console.err);
 

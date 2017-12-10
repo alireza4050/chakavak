@@ -29,6 +29,7 @@ const User = new Schema({
   createdAt: { type: Date, default: Date.now },
   updatedAt: Date,
   name: { type: String, required: true },
+  intro: { type: String, default: 'عضو جدید خانواده چکاوک' },
   avatar: String,
   cover: String,
   tags: [String],
