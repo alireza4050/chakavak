@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const { register, checkAuth } = require('../controllers/authCtrl');
-const { me, getUser } = require('../controllers/userCtrl');
+const { me, getUser, updateProfile } = require('../controllers/userCtrl');
 const { getPost, getPosts, addPost, likePost, dislikePost } = require('../controllers/postCtrl');
 const { addComment, likeComment, dislikeComment } = require('../controllers/postCtrl');
 const { getFriends, requestFriendship, acceptFriendship, removeFriend } = require('../controllers/friendCtrl');
@@ -27,6 +27,7 @@ router.get('/image/:filename', getImage);
 const authenticatedRoutes = ((r) => {
   r.get('/me', me);
   r.get('/friends', getFriends);
+  r.post('/update-profile', updateProfile);
   r.post('/add-friend', requestFriendship);
   r.post('/confirm-friend', acceptFriendship);
   r.post('/remove-friend', removeFriend);
