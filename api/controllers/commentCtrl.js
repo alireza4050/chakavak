@@ -11,7 +11,21 @@ async function addComment(req, res) {
   res.json(selectCommentFields(comment));
 }
 
+async function likeComment(req, res) {
+  const { username } = req.user;
+  await Comment.findByIdAndUpdate(req.body.id, { $push: { likes: username } });
+  res.end();
+}
+
+async function dislikeComment(req, res) {
+  const { username } = req.user;
+  await Comment.findByIdAndUpdate(req.body.id, { $pull: { likes: username } });
+  res.end();
+}
+
 module.exports = asyncHandleAll({
   addComment,
+  likeComment,
+  dislikeComment,
 });
 

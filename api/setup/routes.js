@@ -1,8 +1,11 @@
-const router = require('express').Router();
+const express = require('express');
+
+const router = express.Router();
 const passport = require('passport');
 const { register, checkAuth } = require('../controllers/authCtrl');
 const { me, getUser } = require('../controllers/userCtrl');
-const { getPost, getPosts, addPost, addComment } = require('../controllers/postCtrl');
+const { getPost, getPosts, addPost, likePost, dislikePost } = require('../controllers/postCtrl');
+const { addComment, likeComment, dislikeComment } = require('../controllers/postCtrl');
 const { getFriends, requestFriendship, acceptFriendship, removeFriend } = require('../controllers/friendCtrl');
 const { getImage } = require('../controllers/imgCtrl');
 const upload = require('../utils/imgUpload');
@@ -21,12 +24,20 @@ router.get('/posts/:author', getPosts);
 router.get('/image/:filename', getImage);
 
 // Authenticated Routes
-router.get('/me', checkAuth, me);
-router.get('/friends', checkAuth, getFriends);
-router.get('/add-friend', checkAuth, requestFriendship);
-router.get('/confirm-friend', checkAuth, acceptFriendship);
-router.get('/remove-friend', checkAuth, removeFriend);
-router.post('/post', checkAuth, upload, addPost);
-router.post('/comment/:postid', checkAuth, addComment);
+const authenticatedRoutes = ((r) => {
+  r.get('/me', me);
+  r.get('/friends', getFriends);
+  r.post('/add-friend', requestFriendship);
+  r.post('/confirm-friend', acceptFriendship);
+  r.post('/remove-friend', removeFriend);
+  r.post('/post', upload, addPost);
+  r.post('/comment/:postid', addComment);
+  r.post('/like-post', likePost);
+  r.post('/dislike-post', dislikePost);
+  r.post('/like-comment', likeComment);
+  r.post('/dislike-comment', dislikeComment);
+})(express.Router());
+
+router.use(checkAuth, authenticatedRoutes);
 
 module.exports = router;

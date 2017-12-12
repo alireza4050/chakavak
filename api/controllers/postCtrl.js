@@ -50,9 +50,23 @@ async function addPost(req, res) {
   res.json(selectPostFields(post));
 }
 
+async function likePost(req, res) {
+  const { username } = req.user;
+  await Post.findByIdAndUpdate(req.body.id, { $push: { likes: username } });
+  res.end();
+}
+
+async function dislikePost(req, res) {
+  const { username } = req.user;
+  await Post.findByIdAndUpdate(req.body.id, { $pull: { likes: username } });
+  res.end();
+}
+
 module.exports = asyncHandleAll({
   getPost,
   getPosts,
   getFeed,
   addPost,
+  likePost,
+  dislikePost,
 });
