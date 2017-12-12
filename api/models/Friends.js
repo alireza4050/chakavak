@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const Friend = new Schema({
-  friendId: String,
+  friendname: String,
   status: { type: String, enum: ['friend', 'waiting', 'requested'] },
   createdAt: { type: Date, default: Date.now },
   updatedAt: Date,

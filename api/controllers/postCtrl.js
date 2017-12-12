@@ -5,7 +5,6 @@ const debug = require('debug')('chakavak:post');
 const { selectPostFields, selectCommentFields } = require('../utils/selectFields');
 const { asyncHandleAll } = require('../utils/asyncHandler');
 
-
 async function getPost(req, res) {
   const { postid } = req.params;
   const [post, comments] = await Promise.all([
@@ -29,9 +28,10 @@ async function getPosts(req, res) {
 async function getFeed(req, res) {
   const { username } = req.user;
   const { start = 0, num = 5 } = req.query;
-  let { friends } = await Friends.findOne({ username });
-  friends = friends.filter(({ status }) => status === 'friend');
-  const posts = (await Post.find({ author: { $in: friends } })
+  const { friends } = await Friends
+    .findOne({ username, 'friends.status': 'friend' });
+  const friendNames = friends.map(({ friendname }) => friendname);
+  const posts = (await Post.find({ author: { $in: friendNames } })
     .sort({ createdAt: 1 })
     .skip(+start)
     .limit(+num))
@@ -50,19 +50,9 @@ async function addPost(req, res) {
   res.json(selectPostFields(post));
 }
 
-async function addComment(req, res) {
-  const comment = await new Comment({
-    author: req.user.username,
-    postid: req.body.postid,
-    content: req.body.content,
-  });
-  res.json(selectCommentFields(comment));
-}
-
 module.exports = asyncHandleAll({
   getPost,
   getPosts,
   getFeed,
   addPost,
-  addComment,
 });

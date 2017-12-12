@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { config } = require('../config');
 
 // set mongoose Promise to native ES6 Promise
-mongoose.Promise = global.Promise;
+mongoose.Promise = Promise;
 
 global.conn = new Promise((resolve, reject) => {
   mongoose

@@ -5,13 +5,14 @@ const { Schema } = mongoose;
 const Post = new Schema({
   author: { type: String, index: true },
   content: String,
-  createdAt: { type: Date, default: Date.now },
   location: { type: Schema.Types.Mixed, default: null },
   comments: { type: Number, default: 0 },
   likes: { type: [String], default: [] },
   image: String,
 });
 
+// TODO: use toJSON and toObject to select fields
+// TODO: use simple postid combined with author username as selector
 Post.methods.like = async function like(username) {
   if (this.likes.includes(username)) return;
   this.likes.push(username);

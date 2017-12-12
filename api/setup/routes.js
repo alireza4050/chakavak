@@ -1,7 +1,9 @@
 const router = require('express').Router();
 const passport = require('passport');
-const { me, getUser, register, checkAuth } = require('../controllers/authCtrl');
+const { register, checkAuth } = require('../controllers/authCtrl');
+const { me, getUser } = require('../controllers/userCtrl');
 const { getPost, getPosts, addPost, addComment } = require('../controllers/postCtrl');
+const { getFriends, requestFriendship, acceptFriendship, removeFriend } = require('../controllers/friendCtrl');
 const { getImage } = require('../controllers/imgCtrl');
 const upload = require('../utils/imgUpload');
 
@@ -20,6 +22,10 @@ router.get('/image/:filename', getImage);
 
 // Authenticated Routes
 router.get('/me', checkAuth, me);
+router.get('/friends', checkAuth, getFriends);
+router.get('/add-friend', checkAuth, requestFriendship);
+router.get('/confirm-friend', checkAuth, acceptFriendship);
+router.get('/remove-friend', checkAuth, removeFriend);
 router.post('/post', checkAuth, upload, addPost);
 router.post('/comment/:postid', checkAuth, addComment);
 

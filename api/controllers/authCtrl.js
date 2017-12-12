@@ -1,18 +1,7 @@
 // const passport = require('passport');
 // const debug = require('debug')('chakavak:authctrl');
 const User = require('../models/User');
-const { selectUserFields } = require('../utils/selectFields');
-const { asyncHandleAll } = require('../utils/asyncHandler');
-
-async function me(req, res) {
-  res.json(selectUserFields(req.user));
-}
-
-async function getUser(req, res) {
-  const { username } = req.params;
-  const user = await User.findOne({ username });
-  res.json(selectUserFields(user));
-}
+const { asyncHandler } = require('../utils/asyncHandler');
 
 async function register(req, res) {
   if (req.isAuthenticated()) {
@@ -29,7 +18,6 @@ async function register(req, res) {
   // passport.authenticate('local')(req, res, () => res.json({ user }));
 }
 
-
 function checkAuth(req, res, next) {
   if (!req.isAuthenticated()) {
     next(new Error('Unauthorized Access'));
@@ -37,7 +25,7 @@ function checkAuth(req, res, next) {
   next();
 }
 
-module.exports = Object.assign(
-  { checkAuth },
-  asyncHandleAll({ me, getUser, register }),
-);
+module.exports = {
+  checkAuth,
+  register: asyncHandler(register),
+};
