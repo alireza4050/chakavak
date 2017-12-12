@@ -1,7 +1,6 @@
 import demoRoutes from './demoRoutes';
 
-const user = /* @ngInject */ ($stateParams, rest) =>
-  $stateParams.user || rest.getUser($stateParams.username);
+const user = /* @ngInject */ rest => rest.getMe();
 
 export default ['$stateProvider', '$urlRouterProvider', '$locationProvider',
   function routes($stateProvider, $urlRouterProvider, $locationProvider) {
