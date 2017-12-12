@@ -30,8 +30,8 @@ const User = new Schema({
   updatedAt: Date,
   name: { type: String, required: true },
   intro: { type: String, default: 'عضو جدید خانواده چکاوک' },
-  avatar: String,
-  cover: String,
+  avatar: { id: Schema.Types.ObjectId, filename: String },
+  cover: { id: Schema.Types.ObjectId, filename: String },
   tags: [String],
 });
 

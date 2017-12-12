@@ -45,7 +45,7 @@ async function addPost(req, res) {
     author: req.user.username,
     location: req.body.location,
     content: req.body.content,
-    image: req.file.filename,
+    image: { id: req.file.id, filename: req.file.filename },
   }).save();
   res.json(selectPostFields(post));
 }

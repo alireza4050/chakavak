@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const { register, checkAuth } = require('../controllers/authCtrl');
-const { me, getUser, updateProfile } = require('../controllers/userCtrl');
+const { me, getUser, updateProfile, changeAvatar, changeCover } = require('../controllers/userCtrl');
 const { getPost, getPosts, addPost, likePost, dislikePost } = require('../controllers/postCtrl');
 const { addComment, likeComment, dislikeComment } = require('../controllers/postCtrl');
 const { getFriends, requestFriendship, acceptFriendship, removeFriend } = require('../controllers/friendCtrl');
@@ -21,13 +21,15 @@ router.post('/auth/register', register);
 router.get('/ping', (req, res) => res.send('pong'));
 router.get('/post/:postid', getPost);
 router.get('/posts/:author', getPosts);
-router.get('/image/:filename', getImage);
+router.get('/image/:id/:filename', getImage);
 
 // Authenticated Routes
 const authenticatedRoutes = ((r) => {
   r.get('/me', me);
   r.get('/friends', getFriends);
-  r.post('/update-profile', updateProfile);
+  r.post('/profile', updateProfile);
+  r.post('/avatar', upload, changeAvatar);
+  r.post('/cover', upload, changeCover);
   r.post('/add-friend', requestFriendship);
   r.post('/confirm-friend', acceptFriendship);
   r.post('/remove-friend', removeFriend);

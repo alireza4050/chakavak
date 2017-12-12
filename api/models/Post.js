@@ -8,7 +8,7 @@ const Post = new Schema({
   location: { type: Schema.Types.Mixed, default: null },
   comments: { type: Number, default: 0 },
   likes: { type: [String], default: [] },
-  image: String,
+  image: { id: Schema.Types.ObjectId, filename: String },
 });
 
 // TODO: use toJSON and toObject to select fields
