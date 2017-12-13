@@ -56,11 +56,11 @@
       "name": "Debug Production",
       "type": "chrome",
       "request": "launch",
-      "url": "http://localhost:3000/",
-      "webRoot": "${workspaceRoot}/dist/public",
+      "url": "http://localhost:8080/",
+      "webRoot": "${workspaceRoot}/dist",
       "sourceMaps": true,
-      "preLaunchTask": "prod",
+      // "preLaunchTask": "prod",
       "userDataDir": ".vscode/tmp"
-    },
+    }
   ]
 }

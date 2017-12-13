@@ -50,6 +50,7 @@ const config = {
       'bootstrap4-tagsinput/tagsinput.js',
       'load-google-maps-api-2',
       'ng-file-upload',
+      'ng-infinite-scroll',
       './app/assets/css/style-rtl.beta.min.css',
     ],
   },
@@ -187,7 +188,6 @@ if (process.env.NODE_ENV === 'production') {
   config.output.filename = '[name].[chunkhash].js';
   config.plugins.push(
     new CleanWebpackPlugin(['dist']),
-    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {

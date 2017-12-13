@@ -8,7 +8,7 @@
     "start:app": "NODE_ENV=development webpack-dev-server",
     "start": "run-p start:*",
     "build": "NODE_ENV=production webpack -p",
-    "deploy": "./deploy.sh",
+    "deploy": "deploy/deploy.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

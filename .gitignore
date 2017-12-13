@@ -1,5 +1,6 @@
 # Secret enviroment variables
 api/.env
+deploy/ssh_key*
 
 # compiled output
 /dist

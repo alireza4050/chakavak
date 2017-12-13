@@ -11,8 +11,8 @@ const config = {
     secret: envvar.string('SESSION_SECRET', Math.random().toString(16).substring(2)),
     resave: true,
     saveUninitialized: true,
-    cookie: { secure: 'auto' }
-  }
+    cookie: { secure: 'auto' },
+  },
 };
 
 exports.config = config;

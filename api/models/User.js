@@ -1,3 +1,4 @@
+const util = require('util');
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 const { isEmail, normalizeEmail } = require('validator');
@@ -42,6 +43,10 @@ User.plugin(passportLocalMongoose, {
   usernameLowerCase: true,
   usernameQueryFields: ['email'],
 });
+
+// promisify passport-local-mongoose methods
+User.statics.register = util.promisify(User.statics.register);
+User.methods.changePassword = util.promisify(User.methods.changePassword);
 
 User.pre('save', function updateTimeStamp(next) {
   const currentDate = new Date();

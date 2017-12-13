@@ -1,11 +1,13 @@
 #!/bin/bash
 . api/.env
-scp -r ./dist/app $SSH_HOST:/tmp/public_html &&
-scp -r ./api $SSH_HOST:/tmp/node &&
-ssh $SSH_HOST "sudo rm -rf $PUBLIC_HTML && \
- sudo rm -rf $APP_HOME/node && \
- sudo mv /tmp/public_html $APP_HOME && \
- sudo mv /tmp/node $APP_HOME && \
+
+SSH="ssh -o IdentitiesOnly=yes -i ./deploy/ssh_key"
+RSYNC="rsync -avzu --delete --progress -h"
+
+$RSYNC -e "$SSH" ./dist/ $USER@$SSH_HOST:$PUBLIC_HTML &&
+$RSYNC -e "$SSH" ./api/ $USER@$SSH_HOST:$APP_HOME/node &&
+
+ssh $SSH_HOST " \
  sudo chmod a+x $APP_HOME && \
  sudo chown -R $USER:nginx $PUBLIC_HTML && \
  sudo chown -R $USER:$USER $APP_HOME/node && \

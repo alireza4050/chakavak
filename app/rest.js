@@ -15,10 +15,9 @@ export default class Rest {
     .catch(console.err);
 
   register = form => this.$http.post('/api/auth/register', form)
-    .then(({ data: user }) => {
-      const { username } = user;
-      sessionStorage.setItem('username', username);
-      this.$state.go('profile', { user });
+    .then(() => {
+      // TODO: currently logins after register. should not do this after email verification is added
+      return this.login({ username: form.username, password: form.password });
     })
     .catch(console.err);
 
@@ -26,7 +25,7 @@ export default class Rest {
     .then(({ data: user }) => {
       const { username } = user;
       sessionStorage.setItem('username', username);
-      this.$state.go('profile', { username, user });
+      this.$state.go('profile', { username });
     })
     .catch(console.err);
 

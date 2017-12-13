@@ -3,18 +3,12 @@
   // for the documentation about the tasks.json format
   "version": "2.0.0",
   "tasks": [
-    {
-      "identifier": "prod",
-      "label": "Production run",
-      "type": "shell",
-      "command": "dist/bin/www",
-      "options": {
-        "env": {
-          "NODE_ENV": "production",
-          "PORT": "3000"
-        }
-      },
-      "problemMatcher": []
-    }
+    // {
+    //   "identifier": "prod",
+    //   "label": "Production run frontend",
+    //   "type": "shell",
+    //   "command": "php -S localhost:3000",
+    //   "problemMatcher": []
+    // }
   ]
 }

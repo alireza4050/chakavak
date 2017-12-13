@@ -7,8 +7,7 @@ async function me(req, res) {
 }
 
 async function getUser(req, res) {
-  const { username } = req.params;
-  const user = await User.findOne({ username });
+  const user = await User.findByUsername(req.params.username);
   res.json(selectUserFields(user));
 }
 

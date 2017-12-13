@@ -2,20 +2,19 @@ const express = require('express');
 
 const router = express.Router();
 const passport = require('passport');
-const { register, checkAuth } = require('../controllers/authCtrl');
+const { register, changePassword, checkAuth } = require('../controllers/authCtrl');
 const { me, getUser, updateProfile, changeAvatar, changeCover } = require('../controllers/userCtrl');
 const { getPost, getPosts, addPost, likePost, dislikePost } = require('../controllers/postCtrl');
-const { addComment, likeComment, dislikeComment } = require('../controllers/postCtrl');
+const { addComment, likeComment, dislikeComment } = require('../controllers/commentCtrl');
 const { getFriends, requestFriendship, acceptFriendship, removeFriend } = require('../controllers/friendCtrl');
 const { getImage } = require('../controllers/imgCtrl');
 const upload = require('../utils/imgUpload');
 
-// Check logged in and return user info
 router.get('/user/:username', getUser);
 router.post('/auth/login', passport.authenticate('local'), me);
 router.get('/auth/logout', (req, res) => {
   req.logout();
-  res.redirect('/');
+  res.end();
 });
 router.post('/auth/register', register);
 router.get('/ping', (req, res) => res.send('pong'));
@@ -26,6 +25,8 @@ router.get('/image/:id/:filename', getImage);
 // Authenticated Routes
 const authenticatedRoutes = ((r) => {
   r.get('/me', me);
+  // TODO: allow password reset using emailed token
+  r.post('/change-password', changePassword);
   r.get('/friends', getFriends);
   r.post('/profile', updateProfile);
   r.post('/avatar', upload, changeAvatar);
@@ -39,6 +40,7 @@ const authenticatedRoutes = ((r) => {
   r.post('/dislike-post', dislikePost);
   r.post('/like-comment', likeComment);
   r.post('/dislike-comment', dislikeComment);
+  return r;
 })(express.Router());
 
 router.use(checkAuth, authenticatedRoutes);
