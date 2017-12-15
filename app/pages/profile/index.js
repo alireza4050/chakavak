@@ -5,10 +5,13 @@ import template from './profile.html';
 function controller($scope, rest) {
   this.$onInit = () => {
     $scope.posts = [];
-    $scope.isMyProfile = this.user.username === sessionStorage.getItem('username');
-  };
-  $scope.getPosts = () => {
-    rest.getPosts(this.user.username, $scope.posts.length, 5);
+    const { username } = this.user;
+    $scope.isMyProfile = username === sessionStorage.getItem('username');
+    $scope.getPosts = () => {
+      rest.getPosts(username, $scope.posts.length, 5)
+        .then((posts) => { $scope.posts = $scope.posts.concat(posts); });
+    };
+    $scope.getPosts();
   };
 }
 

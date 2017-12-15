@@ -1,4 +1,4 @@
-import demoRoutes from './demoRoutes';
+// import demoRoutes from './demoRoutes';
 
 const user = /* @ngInject */ rest => rest.getMe();
 
@@ -71,5 +71,5 @@ export default ['$stateProvider', '$urlRouterProvider', '$locationProvider',
       component: 'pageProfile',
       authenticate: true,
     });
-    demoRoutes($stateProvider);
+    // demoRoutes($stateProvider);
   }];

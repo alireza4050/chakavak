@@ -1,6 +1,6 @@
 const selectUserFields =
-  ({ username, email, name, avatar, cover, tags }) =>
-    ({ username, email, name, avatar, cover, tags });
+  ({ username, name, avatar, cover, tags }) =>
+    ({ username, name, avatar, cover, tags });
 
 const selectPostFields =
   ({ _id: id, createdAt, author, location, likes, comments, content, image }) =>

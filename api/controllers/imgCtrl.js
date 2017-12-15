@@ -14,8 +14,9 @@ const pImage = (async () => {
 const db = mongoose.connection;
 
 async function getImage(req, res) {
-  const { id } = req.params;
-  const image = await db.collection('images.files').findOne({ id });
+  const { id, filename } = req.params;
+  const image = await db.collection('images.files').findOne({ filename });
+  if (!image) { res.status(404).end(); return; }
   res.set('Content-Type', image.contentType);
   const Image = await pImage;
   Image.readById(id).pipe(res);

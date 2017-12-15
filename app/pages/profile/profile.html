@@ -1,11 +1,10 @@
 <sa-header user="$ctrl.user"></sa-header>
 <div class="container" id="home">
   <div class="row">
-    <div class="col-md-3"> </div>
-    <div class="col-md-6">
-      <sa-new-post ng-show="isMyProfile"></sa-new-post>
-      <div infinite-scroll="getPosts()">
-        <div class="mt-3"></div>
+    <div class="col-md-9 col-lg-6 mx-auto">
+      <sa-new-post posts="posts" ng-show="isMyProfile"></sa-new-post>
+      <div class="mt-3"></div>
+      <div infinite-scroll="getPosts()" infinite-scroll-disabled="posts.length < 5">
         <sa-post ng-repeat="post in posts track by $index" post="post"></sa-post>
       </div>
     </div>

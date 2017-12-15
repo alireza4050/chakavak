@@ -6,6 +6,7 @@ import Rest from './rest';
 import checkTransitions from './auth';
 import components from './components';
 import pages from './pages';
+import filters from './utils/filters';
 import routes from './routes';
 import './stylesheets/custom.scss';
 
@@ -21,9 +22,10 @@ pages.forEach(pageComponent => app.component(...pageComponent));
 app.config(routes);
 // app.config(authProviders);
 app.service('rest', Rest);
-app.filter('farsiNum', () => num => num.toLocaleString('fa-IR'));
+filters.forEach(filter => app.filter(...filter));
 // sessionStorage.clear();
 app.run(checkTransitions);
+angular.module('infinite-scroll').value('THROTTLE_MILLISECONDS', 1000);
 app.run(() => {
   $(() => {
     $('[data-toggle="popover"]').popover();

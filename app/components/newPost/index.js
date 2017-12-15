@@ -6,24 +6,19 @@ import template from './newPost.html';
 function controller($scope, $timeout, Upload) {
   const newPost = document.getElementById('new-post');
   const textBox = document.getElementById('new-post-textarea');
+  $scope.fileInput = document.getElementById('imageInput');
   this.$onInit = () => {
-    $scope.isExpanded = false;
+    // $scope.isExpanded = false;
     $scope.post = {};
     newPost.addEventListener('focusin', () => {
-      $scope.isExpanded = true;
+      // $scope.isExpanded = true;
       textBox.style.height = '10em';
     });
     newPost.addEventListener('focusout', () => {
       if ($scope.post.content) return;
-      $scope.isExpanded = false;
+      // $scope.isExpanded = false;
       textBox.style.height = '3.5em';
     });
-  };
-
-  $scope.resizeBox = ({ expanded }) => {
-    if ($scope.content) expanded = true;
-    $scope.isExpanded = expanded;
-    textBox.style.height = $scope.isExpanded ? '10em' : '3.5em';
   };
 
   $timeout(() => {
@@ -40,30 +35,51 @@ function controller($scope, $timeout, Upload) {
         .then((googleMaps) => {
           const geocoder = new googleMaps.Geocoder();
           geocoder.geocode({ location }, ([result]) => {
-            $scope.location = result.address_components[1].short_name;
+            $scope.post.location = result.address_components[1].short_name;
           });
         })
         .catch(console.error);
     });
   });
+  $scope.fileChanged = (file) => { $scope.post.image = file; };
+  // $scope.resizeOptions = (width, height) => {
+  //   const ratio = width / height;
+  //   let centerCrop = true;
+  //   if (ratio < 0.8) {
+  //     height = width / 0.8;
+  //   } else if (ratio > 1.91) {
+  //     width = 1.91 * height;
+  //   } else {
+  //     centerCrop = false;
+  //   }
+
+  //   if (width > 1080) {
+  //     height *= 1080 / width;
+  //     width = 1080;
+  //   }
+  //   $scope.rszOpts = { width, height, centerCrop };
+  //   return $scope.rszOpts;
+  // };
+
+  // $scope.resizeCondition = (w, h) => {
+  //   const { width, height } = $scope.resizeOptions(w, h);
+  //   return width === w && height === h;
+  // };
+
+  // [$scope.post.image] = $scope.fileInput.files; };
   $scope.publish = () => {
     // if ($scope.form.image.$valid && $scope.post.image) {
-    $scope.upload($scope.post);
+    $scope.upload();
     // }
   };
-  $scope.upload = (post) => {
+  $scope.upload = () => {
     Upload.upload({
       url: '/api/post',
-      data: {
-        content: post.content,
-        // location: post.location,
-        file: post.image,
-      },
+      data: $scope.post,
     }).then((response) => {
-      $scope.posts.push(response.data);
+      this.posts.push(response.data);
       $scope.post = {};
-      newPost.blur();
-      console.warn(response);
+      newPost.dispatchEvent(new Event('focusout'));
     }, (response) => {
       console.error(response);
       if (response.status > 0) {
@@ -75,4 +91,10 @@ function controller($scope, $timeout, Upload) {
   };
 }
 
-export default ['saNewPost', { template, controller }];
+export default ['saNewPost', {
+  template,
+  controller,
+  bindings: {
+    posts: '=',
+  },
+}];

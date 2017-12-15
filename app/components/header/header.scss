@@ -4,11 +4,11 @@ $intro-width: 4 * $header-height / 7;
     height: $header-height;
     #user-intro {
         height: 2 * $intro-width;
-        width: $intro-width;
-        position: absolute;
+        // width: $intro-width;
+        position: relative;
         top: $header-height - ($intro-width / 2);
-        left: 50%;
-        transform: translateX(-50%);
+        // left: 50%;
+        // transform: translateX(-50%);
         z-index: 50;
         #profile-pic {
             &,

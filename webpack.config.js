@@ -133,12 +133,14 @@ const config = {
     new FaviconsWebpackPlugin({
       logo: './app/assets/img/logo.svg',
       prefix: 'assets/icons-[hash]/',
+      background: '#da532c',
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve('app', 'index.html'),
       inject: true,
     }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.HashedModuleIdsPlugin(),
     new webpack.ProvidePlugin({
       $: 'jquery',

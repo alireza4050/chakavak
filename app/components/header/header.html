@@ -1,8 +1,8 @@
-<header id="header" class="mb-5 bg-secondary" style="background: url('/assets/img/profile_bg.png')">
-  <sa-navbar></sa-navbar>
-  <div id="user-intro" class="text-center">
-    <div id="profile-pic" class="bg-dark">
-      <img ng-src="{{user.avatar || '/assets/img/guy.jpeg'}}" alt="User Profile Picture">
+<header id="header" class="mb-5 bg-secondary" style="background: url('{{user | cover}}')">
+  <sa-navbar user="user"></sa-navbar>
+  <div id="user-intro" class="mx-auto text-center">
+    <div id="profile-pic" class="mx-auto bg-dark">
+      <img ng-src="{{user | avatar}}" alt="User Avatar">
     </div>
     <h2>{{user.name}}</h2>
     <p>{{user.intro}}</p>

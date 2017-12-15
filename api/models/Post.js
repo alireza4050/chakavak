@@ -5,9 +5,10 @@ const { Schema } = mongoose;
 const Post = new Schema({
   author: { type: String, index: true },
   content: String,
-  location: { type: Schema.Types.Mixed, default: null },
+  location: Schema.Types.Mixed,
   comments: { type: Number, default: 0 },
   likes: { type: [String], default: [] },
+  createdAt: { type: Date, default: Date.now },
   image: { id: Schema.Types.ObjectId, filename: String },
 });
 

@@ -1,8 +1,7 @@
 <sa-navbar></sa-navbar>
 <div class="container" id="search-results">
   <div class="row">
-    <div class="col-md-3"> </div>
-    <div class="col-md-6">
+    <div class="col-md-9 col-lg-6 mx-auto">
       <sa-user ng-repeat="user in results track by $index" user="user" is-friend="user.isFriend"></sa-user>
     </div>
   </div>
