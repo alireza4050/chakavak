@@ -11,6 +11,14 @@ async function getUser(req, res) {
   res.json(selectUserFields(user));
 }
 
+async function searchUsers(req, res) {
+  const { q, start = 0, num = 3 } = req.query;
+  const users = await User
+    .find({ name: { $regex: q } })
+    .skip(+start)
+    .limit(+num);
+  res.json(users.map(({ username, name, avatar }) => ({ username, name, avatar })));
+}
 async function updateProfile(req, res) {
   const { user } = req;
   const { name, intro, tags } = req.body;
@@ -38,6 +46,7 @@ async function changeCover(req, res) {
 module.exports = asyncHandleAll({
   me,
   getUser,
+  searchUsers,
   updateProfile,
   changeAvatar,
   changeCover,

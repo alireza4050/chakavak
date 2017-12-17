@@ -17,8 +17,8 @@ async function getImage(req, res) {
   const { id, filename } = req.params;
   const image = await db.collection('images.files').findOne({ filename });
   if (!image) { res.status(404).end(); return; }
-  res.set('Content-Type', image.contentType);
   const Image = await pImage;
+  res.set('Content-Type', image.contentType);
   Image.readById(id).pipe(res);
 }
 

@@ -77,7 +77,7 @@ function controller($scope, $timeout, Upload) {
       url: '/api/post',
       data: $scope.post,
     }).then((response) => {
-      this.posts.push(response.data);
+      this.posts = [response.data].concat(this.posts);
       $scope.post = {};
       newPost.dispatchEvent(new Event('focusout'));
     }, (response) => {

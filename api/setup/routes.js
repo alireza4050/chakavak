@@ -3,8 +3,8 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const { register, changePassword, checkAuth } = require('../controllers/authCtrl');
-const { me, getUser, updateProfile, changeAvatar, changeCover } = require('../controllers/userCtrl');
-const { getPost, getPosts, addPost, likePost, dislikePost } = require('../controllers/postCtrl');
+const { me, getUser, searchUsers, updateProfile, changeAvatar, changeCover } = require('../controllers/userCtrl');
+const { getPost, getPosts, getFeed, addPost, likePost, dislikePost } = require('../controllers/postCtrl');
 const { addComment, likeComment, dislikeComment } = require('../controllers/commentCtrl');
 const { getFriends, requestFriendship, acceptFriendship, removeFriend } = require('../controllers/friendCtrl');
 const { getImage } = require('../controllers/imgCtrl');
@@ -25,9 +25,11 @@ router.get('/image/:id/:filename', getImage);
 // Authenticated Routes
 const authenticatedRoutes = ((r) => {
   r.get('/me', me);
+  r.get('/friends', getFriends);
+  r.get('/feed', getFeed);
+  r.get('/search', searchUsers);
   // TODO: allow password reset using emailed token
   r.post('/change-password', changePassword);
-  r.get('/friends', getFriends);
   r.post('/profile', updateProfile);
   r.post('/avatar', upload, changeAvatar);
   r.post('/cover', upload, changeCover);

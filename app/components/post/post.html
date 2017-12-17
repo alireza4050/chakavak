@@ -4,8 +4,11 @@
       <img ng-src="{{$ctrl.post.image | imgSrc}}" style="width: 100%;" alt="Post image">
       <hr>
     </div>
-    <img class="author-avatar" ng-src="{{$ctrl.post.author | avatar}}" alt=""> {{$ctrl.post.author.name}} {{$ctrl.post.createdAt}}
-    <span ng-if="$ctrl.post.location"><i class="fa fa-map-marker mx-3" aria-hidden="true"></i> {{$ctrl.post.location}}</span></div>
+    <span>
+      <img class="author-avatar" ng-src="{{$ctrl.post.author | avatar}}" alt=""> {{$ctrl.post.author.name}} </span>
+    <span ng-if="$ctrl.post.location">
+      <i class="fa fa-map-marker mx-3" aria-hidden="true"></i> {{$ctrl.post.location}}</span>
+  </div>
   <div class="card-body">
     <p class="p-3">{{$ctrl.post.content}}</p>
   </div>
@@ -14,5 +17,6 @@
       <i class="fa fa-comment-o" aria-hidden="true"></i> {{$ctrl.post.comments | farsiNum}} نظر </div>
     <div class="mx-3">
       <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{$ctrl.post.likes.length | farsiNum}} لایک </div>
+    <div class="mx-3 ml-auto"> {{$ctrl.post.createdAt | shamsiDate}} </div>
   </div>
 </div>

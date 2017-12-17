@@ -1,14 +1,16 @@
 const mongoose = require('mongoose');
+const timestamps = require('mongoose-timestamp-date-unix');
 
 const { Schema } = mongoose;
 
 const Comment = new Schema({
   postid: { type: Schema.Types.ObjectId, index: true },
   content: String,
-  createdAt: { type: Date, default: Date.now },
   author: String,
   likes: { type: [String], default: [] },
 });
+
+Comment.plugin(timestamps);
 
 Comment.methods.like = async function like(username) {
   if (this.likes.includes(username)) return;

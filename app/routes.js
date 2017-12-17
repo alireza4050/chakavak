@@ -45,7 +45,9 @@ export default ['$stateProvider', '$urlRouterProvider', '$locationProvider',
       url: '/search/:query',
       resolve: {
         user,
-        results: /* @ngInject */ (rest, $stateParams) => rest.search($stateParams.query, 0),
+        friends: /* @ngInject */ rest => rest.getFriends(),
+        results: /* @ngInject */ (rest, $stateParams) => rest
+          .searchUsers($stateParams.query, 0, 10),
       },
       component: 'pageSearch',
       authenticate: true,

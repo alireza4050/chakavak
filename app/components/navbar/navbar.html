@@ -1,6 +1,6 @@
 <nav id="navbar" class="navbar navbar-expand-md navbar-dark bg-primary">
   <a class="navbar-brand mx-3" ui-sref="feed">
-    <img src="/app/assets/img/logo.svg" style="height: 2.5em;" alt="">
+    <img ng-src="{{logo}}" style="height: 2.5em;" alt="">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
     aria-expanded="false" aria-label="Toggle navigation">
@@ -10,7 +10,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" id="userThumbnail">
         <a class="nav-link" ui-sref="feed" data-toggle="modal" data-target="#profileModal">
-          <img ng-src="{{user | avatar}}" alt="">
+          <div class="thumbnail d-inline-block">
+            <img ng-src="{{user | avatar}}" alt="">
+          </div>
         </a>
       </li>
       <li class="nav-item dropdown">
@@ -48,13 +50,18 @@
     </ul>
     <div class="dropdown">
       <form class="form-inline m-1" ng-submit="submit()">
-        <input ng-model="query" class="form-control  my-auto px-3" type="search" placeholder="جستجو" aria-label="جستجو">
+        <input ng-change="search()" ng-model="query" class="form-control my-auto px-3" type="search" placeholder="جستجو" aria-label="جستجو">
       </form>
       <div ng-class="{show: query}" class="dropdown-menu" id="searchResults" aria-labelledby="searchResults">
-        <div ng-repeat="user in searchResults | filter:query | limitTo:5">
-          <a class="dropdown-item" href="#">{{user.name}}</a>
-          <div class="dropdown-divider"></div>
+        <div ng-show="searchResults.length!==0" ng-repeat="user in searchResults">
+          <a class="search-result d-inline-flex align-items-center dropdown-item" ui-sref="profile({username: user.username})">
+            <div class="thumbnail mx-1 d-inline-block">
+              <img class="" style="" ng-src="{{user | avatar}}" alt="">
+            </div> <span>{{user.name}}</span></a>
+          <!-- <div class="dropdown-divider"></div> -->
         </div>
+        <span ng-show="searchResults.length===0" class="dropdown-item">نتیجه‌ای یافت نشد</span>
+        <!-- <div class="dropdown-divider"></div> -->
       </div>
     </div>
 </nav>

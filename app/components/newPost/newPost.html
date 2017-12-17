@@ -1,6 +1,6 @@
 <form id="new-post" class="card" name="form" ng-submit="publish()" enctype="multipart/form-data">
   <div class="card-body">
-    <div ng-show="post.image" class="pb-2">
+    <div ng-if="post.image" class="pb-2">
       <img ngf-src="post.image" style="width: 100%;" alt="Post image preview">
     </div>
     <textarea id="new-post-textarea" name="content" rows="5" maxlength="200" placeholder="چه خبر؟" ng-model="post.content"></textarea>

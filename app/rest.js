@@ -34,7 +34,10 @@ export default class Rest {
     this.$state.go('signin');
   });
 
-  searchUsers = query => this.$http.get(`/api/users/searchUsername/${query}`).catch(console.err);
+  searchUsers = (query, start = 0, num = 3) => this.$http
+    .get(`/api/search?q=${query}&start=${start}&num=${num}`)
+    .then(({ data }) => data)
+    .catch(console.err);
 
   getPosts = (author, start = 0, num = 5) => this
     .$http.get(`/api/posts/${author}?start=${start}&num=${num}`)
@@ -48,7 +51,10 @@ export default class Rest {
 
   newPost = post => this.$http.post('/api/post', { post }).catch(console.err);
 
-  getFriends = () => this.$http.get(`/api/userFriend/friendList/${sessionStorage.getItem('username')}`).catch(console.err);
+  getFriends = () => this.$http
+    .get('/api/friends')
+    .then(({ data }) => data)
+    .catch(console.err);
 
   isFriend = otherId => this.$http.get(`/api/userFriend/friendshipCheck/${sessionStorage.getItem('username')}/${otherId}`).catch(console.err);
 }

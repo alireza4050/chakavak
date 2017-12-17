@@ -6,7 +6,8 @@ RSYNC="rsync -avzu --delete --progress -h"
 
 $RSYNC -e "$SSH" ./dist/ $USER@$SSH_HOST:$PUBLIC_HTML &&
 $RSYNC -e "$SSH" ./api/ $USER@$SSH_HOST:$APP_HOME/node &&
-
+$RSYNC -e "$SSH" ./package.json $USER@$SSH_HOST:$APP_HOME/ &&
+# $SSH $USER@$SSH_HOST 'npm install' &&
 ssh $SSH_HOST " \
  sudo chmod a+x $APP_HOME && \
  sudo chown -R $USER:nginx $PUBLIC_HTML && \

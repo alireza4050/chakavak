@@ -1,6 +1,7 @@
 const util = require('util');
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
+const timestamps = require('mongoose-timestamp-date-unix');
 const { isEmail, normalizeEmail } = require('validator');
 
 const { Schema } = mongoose;
@@ -27,8 +28,6 @@ const User = new Schema({
     // minlength: 8,
   },
   // active: { type: Boolean, default: false },
-  createdAt: { type: Date, default: Date.now },
-  updatedAt: Date,
   name: { type: String, required: true },
   intro: { type: String, default: 'عضو جدید خانواده چکاوک' },
   avatar: { id: Schema.Types.ObjectId, filename: String },
@@ -43,6 +42,8 @@ User.plugin(passportLocalMongoose, {
   usernameLowerCase: true,
   usernameQueryFields: ['email'],
 });
+
+User.plugin(timestamps);
 
 // promisify passport-local-mongoose methods
 User.statics.register = util.promisify(User.statics.register);

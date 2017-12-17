@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const timestamps = require('mongoose-timestamp-date-unix');
 
 const { Schema } = mongoose;
 
@@ -8,9 +9,10 @@ const Post = new Schema({
   location: Schema.Types.Mixed,
   comments: { type: Number, default: 0 },
   likes: { type: [String], default: [] },
-  createdAt: { type: Date, default: Date.now },
   image: { id: Schema.Types.ObjectId, filename: String },
 });
+
+Post.plugin(timestamps);
 
 // TODO: use toJSON and toObject to select fields
 // TODO: use simple postid combined with author username as selector

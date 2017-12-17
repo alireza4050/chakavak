@@ -1,13 +1,14 @@
-<div class="user-el text-center card d-flex p-2 justify-content-between flex-row align-items-center">
-  <div class="user-detail d-flex-inline justify-content-around">
-    <img ng-src="$ctrl.user.thumbnail" alt="">
-    <span>{{$ctrl.user.name}}</span>
-  </div>
-  <div ng-if="$ctrl.user.isFriend">
-    <button class="btn btn-primary">مشاهده پروفایل</button>
-  </div>
-  <div ng-if="!$ctrl.user.isFriend">
-    <button ng-if="$ctrl.user.isConfirmed" class="btn btn-primary">درخواست دوستی</button>
-    <button ng-if="!$ctrl.user.isConfirmed" class="btn btn-secondary" disabled>در انتظار تایید</button>
+<div class="user-el my-4 text-center card d-flex p-2 justify-content-between flex-row align-items-center">
+  <a class="user-detail d-flex-inline justify-content-around" ui-sref="profile({username: user.username})">
+    <div class="thumbnail d-inline-block mx-2">
+      <img ng-src="{{user | avatar}}" alt="">
+    </div>
+    <span class="text-large">{{user.name}}</span>
+  </a>
+  <div>
+    <button ng-if="status === 'friend'" class="btn btn-primary">مشاهده پروفایل</button>
+    <button ng-if="status == null" class="btn btn-primary">درخواست دوستی</button>
+    <button ng-if="status === 'waiting'" class="btn btn-secondary" disabled>در انتظار تایید</button>
+    <button ng-if="status === 'requested'" class="btn btn-primary">تایید درخواست</button>
   </div>
 </div>

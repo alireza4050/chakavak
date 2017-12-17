@@ -14,13 +14,14 @@ $header-height: 9rem;
         font-size: 1.25rem;
         align-items: center;
     }
-    #userThumbnail img {
-        border-radius: 50%;
-        width: $header-height / 4;
-        height: $header-height / 4;
+    .thumbnail {
         background-color: black;
+        // img {
+            border-radius: 50%;
+            width: $header-height / 4;
+            height: $header-height / 4;
+        // }
     }
-
     .badge {
         position: absolute;
         left: 0em;

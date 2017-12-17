@@ -1,8 +1,9 @@
-<sa-navbar></sa-navbar>
+<sa-navbar user="$ctrl.user"></sa-navbar>
 <div class="container" id="search-results">
+  <div class="my-4 py-3"></div>
   <div class="row">
-    <div class="col-md-9 col-lg-6 mx-auto">
-      <sa-user ng-repeat="user in results track by $index" user="user" is-friend="user.isFriend"></sa-user>
+  <div class="col-md-9 col-lg-6 mx-auto">
+      <sa-user ng-repeat="user in $ctrl.results track by $index" user="user" status="status(user)"></sa-user>
     </div>
   </div>
 </div>

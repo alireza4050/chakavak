@@ -21,4 +21,10 @@ app.use('/api', require('./setup/routes'));
 
 app.use(connectHistoryFallback());
 
+// catch async errors
+app.use(async (err, req, res, next) => {
+  if (err) res.end(err.message);
+  next(err);
+});
+
 module.exports = app;
