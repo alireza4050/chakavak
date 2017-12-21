@@ -7,6 +7,7 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCSSAssets = require('optimize-css-assets-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const formatter = require('eslint-friendly-formatter');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
@@ -81,10 +82,10 @@ const config = {
       },
       {
         test: /\.s?css$/,
-        use: ExtractTextPlugin.extract({
+        use: ['css-hot-loader', ...ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: cssLoaders,
-        }),
+        })],
       },
       {
         test: /\.html$/,
@@ -96,19 +97,44 @@ const config = {
         },
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'url-loader',
-        options: {
-          limit: 10000,
-          name: path.join('assets', 'img', '[name].[hash:7].[ext]'),
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 10000,
+            context: 'app',
+            name: '[path][name].[hash:7].[ext]',
+            fallback: 'file-loader',
+          },
         },
+        {
+          loader: 'image-webpack-loader',
+          query: {
+            mozjpeg: {
+              progressive: true,
+            },
+            gifsicle: {
+              interlaced: false,
+            },
+            optipng: {
+              optimizationLevel: 4,
+            },
+            pngquant: {
+              quality: '75-90',
+              speed: 3,
+            },
+          },
+        }],
+        exclude: /node_modules/,
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: path.join('assets', 'fonts', '[name].[hash:7].[ext]'),
+          context: 'app',
+          name: '[path][name].[hash:7].[ext]',
+          fallback: 'file-loader',
         },
       },
     ],
@@ -120,6 +146,7 @@ const config = {
       '/api': 'http://localhost:3030',
     },
     quiet: true,
+    hot: true,
   },
   plugins: [
     new ProgressBarPlugin({
@@ -197,6 +224,7 @@ if (process.env.NODE_ENV === 'production') {
       },
       sourceMap: true,
     }),
+    new OptimizeCSSAssets(),
     new CompressionWebpackPlugin({
       asset: '[path].gz[query]',
       algorithm: 'gzip',

@@ -5,7 +5,7 @@ $header-height: 9rem;
     padding-right: 0;
     width: 100%;
     position: fixed;
-    z-index: 1050;
+    // z-index: 1050;
     form>input {
         // border-radius: $header-height / 9;
         background-color: #fff;
@@ -15,12 +15,10 @@ $header-height: 9rem;
         align-items: center;
     }
     .thumbnail {
-        background-color: black;
-        // img {
-            border-radius: 50%;
-            width: $header-height / 4;
-            height: $header-height / 4;
-        // }
+        background-color: black; // img {
+        border-radius: 50%;
+        width: $header-height / 4;
+        height: $header-height / 4; // }
     }
     .badge {
         position: absolute;
@@ -34,4 +32,7 @@ $header-height: 9rem;
             display: none;
         }
     }
+    // ul a[data-toggle=modal] {
+    //     z-index: 1060;
+    // }
 }

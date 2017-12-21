@@ -9,7 +9,7 @@
   <div class="collapse navbar-collapse bg-primary px-3" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" id="userThumbnail">
-        <a class="nav-link" ui-sref="feed" data-toggle="modal" data-target="#profileModal">
+        <a class="nav-link" ui-sref="feed">
           <div class="thumbnail d-inline-block">
             <img ng-src="{{user | avatar}}" alt="">
           </div>
@@ -34,10 +34,10 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" data-target="#profileModal">
+        <!-- <a class="nav-link" data-toggle="modal" data-target="#profileModal">
           <i class="fa fa-user-o fa-lg"></i>
-        </a>
-        <sa-profile-settings></sa-profile-settings>
+        </a> -->
+        <sa-profile-settings user="user"></sa-profile-settings>
       </li>
       <li class="nav-item">
         <a class="nav-link">
@@ -57,7 +57,9 @@
           <a class="search-result d-inline-flex align-items-center dropdown-item" ui-sref="profile({username: user.username})">
             <div class="thumbnail mx-1 d-inline-block">
               <img class="" style="" ng-src="{{user | avatar}}" alt="">
-            </div> <span>{{user.name}}</span></a>
+            </div>
+            <span>{{user.name}}</span>
+          </a>
           <!-- <div class="dropdown-divider"></div> -->
         </div>
         <span ng-show="searchResults.length===0" class="dropdown-item">نتیجه‌ای یافت نشد</span>

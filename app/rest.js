@@ -34,6 +34,9 @@ export default class Rest {
     this.$state.go('signin');
   });
 
+  updateProfile = data => this.$http.post('/api/profile', data)
+    .catch(console.err);
+
   searchUsers = (query, start = 0, num = 3) => this.$http
     .get(`/api/search?q=${query}&start=${start}&num=${num}`)
     .then(({ data }) => data)

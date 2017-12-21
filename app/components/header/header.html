@@ -4,7 +4,7 @@
     <div id="profile-pic" class="mx-auto bg-dark">
       <img ng-src="{{user | avatar}}" alt="User Avatar">
     </div>
-    <h2>{{user.name}}</h2>
+    <h2 class="editable"><i class="fa fa-pencil-square" aria-hidden="true"></i><span contenteditable="true">{{user.name}}</span></h2>
     <p>{{user.intro}}</p>
     <div id="intro-tags" class="d-flex justify-content-center flex-row flex-wrap">
       <div ng-repeat="tag in user.tags | limitTo: moreTags?user.tags.length:4" class="m-1 badge badge-pill badge-default bg-info">{{tag}}</div>

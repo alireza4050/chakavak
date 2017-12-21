@@ -3,11 +3,9 @@ $intro-width: 4 * $header-height / 7;
 #header {
     height: $header-height;
     #user-intro {
-        height: 2 * $intro-width;
-        // width: $intro-width;
+        height: 2 * $intro-width; // width: $intro-width;
         position: relative;
-        top: $header-height - ($intro-width / 2);
-        // left: 50%;
+        top: $header-height - ($intro-width / 2); // left: 50%;
         // transform: translateX(-50%);
         z-index: 50;
         #profile-pic {
@@ -24,6 +22,28 @@ $intro-width: 4 * $header-height / 7;
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
+        }
+        .editable {
+            $outline-color: rgb(170, 168, 168);
+            display: inline-block;
+            padding: 0 0.75em;
+            position: relative;
+            >.fa-pencil-square {
+                // color: white;
+                font-size: 0.75em;
+                position: absolute;
+                top: 0;
+                right: 0;
+                // background: $outline-color;
+                visibility: hidden;
+            }
+            &:hover {
+                border: 3px solid $outline-color;
+                border-radius: 5px;
+                >.fa-pencil-square {
+                    visibility: visible;
+                }
+            }
         }
     }
 }

@@ -3,13 +3,25 @@ import template from './profileSettings.html';
 
 /* @ngInject */
 function controller($scope, rest) {
+  const tagsBox = $('#tags-edit');
+  // this.$onInit = () => {
+  //   const { name, intro } = this.user;
+  //   Object.assign($scope, { name, intro });
+  //   tagsBox.val(this.user.tags.join(','));
+  // };
   $scope.submit = () => {
-    rest.getUser()
-      .then((user) => {
-        const newUser = Object.merge({}, user, $scope.user);
-        rest.register(newUser);
+    const { name, intro } = $scope;
+    rest.updateProfile({ name, intro, tags: tagsBox.tagsinput('items') })
+      .then(({ data }) => {
+        Object.assign(this.user, data);
       });
   };
 }
 
-export default ['saProfileSettings', { template, controller }];
+export default ['saProfileSettings', {
+  template,
+  controller,
+  bindings: {
+    user: '=',
+  },
+}];

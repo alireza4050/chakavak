@@ -26,8 +26,9 @@ filters.forEach(filter => app.filter(...filter));
 // sessionStorage.clear();
 app.run(checkTransitions);
 angular.module('infinite-scroll').value('THROTTLE_MILLISECONDS', 1000);
-app.run(() => {
-  $(() => {
-    $('[data-toggle="popover"]').popover();
-  });
-});
+
+// app.run(() => {
+//   $(() => {
+//     $('[data-toggle="popover"]').popover();
+//   });
+// });
